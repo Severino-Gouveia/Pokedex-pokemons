@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PokeDEX</title>
+</head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<body>
+    <h1>Digite o Pokemon que deseja ver as informações</h1>
+    <form method="GET" action="/">
+        <label for="search">Pesquisar:</label>
+        <input type="text" name="search" id="search">
+        <button type="submit">Enviar</button>
+    </form>
+    {% if pokemon %}
+   <div class="pokemon-box sliding-box">
+  <h2>{{ pokemon.name }}</h2>
+  <img src="{{ pokemon.image_url }}" alt="{{ pokemon.name }}">
+  <div class="pokemon-info">
+    <p>{{ pokemon.description }}</p>
+  </div>
+  <div class="pokemon-info">
+    <p><strong>Tipo:</strong> {{ pokemon.type }}</p>
+  </div>
+  <div class="pokemon-info">
+    <p><strong>Habilidades:</strong> {{ pokemon.abilities }}</p>
+  </div>
+  <div class="pokemon-info">
+    <p><strong>Status:</strong></p>
+    <ul>
+      <li><strong>HP:</strong> {{ pokemon.hp }}</li>
+      <li><strong>Attack:</strong> {{ pokemon.attack }}</li>
+      <li><strong>Defense:</strong> {{ pokemon.defense }}</li>
+      <li><strong>Special Attack:</strong> {{ pokemon.special_attack }}</li>
+      <li><strong>Special Defense:</strong> {{ pokemon.special_defense }}</li>
+      <li><strong>Speed:</strong> {{ pokemon.speed }}</li>
+    </ul>
+  </div>
+</div>
+
+
+    {% elif search_query %}
+    <p>Nenhum resultado encontrado para "{{ search_query }}".</p>
+    {% endif %}
+</body>
+</html>
+
+
+
